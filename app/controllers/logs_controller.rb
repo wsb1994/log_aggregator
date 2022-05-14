@@ -43,6 +43,16 @@ class LogsController < ApplicationController
   def destroy
     @log.destroy
   end
+  # GET
+  def specific_logs_n
+    @Results = Log.where(service: params[:app]).limit(params[:n])
+    render json: @Results
+  end
+
+  def specific_logs
+    @Results = Log.where(service: params[:app])
+    render json: @Results
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
